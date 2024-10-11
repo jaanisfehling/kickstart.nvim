@@ -930,6 +930,10 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   { import = 'custom.plugins' },
+
+  -- MY PLUGINS
+
+  'tanvirtin/monokai.nvim',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -955,7 +959,18 @@ require('lazy').setup({
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
+-- MY CONFIG
+
 vim.keymap.set('n', '<C-b>', '<Cmd>Neotree toggle<CR>')
 
-local builtin = require('telescope.builtin')
+local builtin = require 'telescope.builtin'
 vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
+
+require('lspconfig').hls.setup {}
+
+vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
+vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+
+require('monokai').setup { palette = require('monokai').pro }
