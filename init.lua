@@ -918,6 +918,8 @@ require('lazy').setup({
   'tanvirtin/monokai.nvim',
   'alx741/yesod.vim',
   'pbrisbin/vim-syntax-shakespeare',
+  'sindrets/diffview.nvim',
+  'nvim-tree/nvim-web-devicons',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -963,3 +965,11 @@ require('monokai').setup { palette = require('monokai').pro }
 vim.o.tabstop = 4 -- Insert 4 spaces for a tab
 vim.o.shiftwidth = 4 -- Change the number of space characters inserted for indentation
 vim.o.expandtab = true -- Converts tabs to spaces
+
+vim.keymap.set('n', '<C-g>', function()
+  if next(require('diffview.lib').views) == nil then
+    vim.cmd 'DiffviewOpen'
+  else
+    vim.cmd 'DiffviewClose'
+  end
+end)
