@@ -977,3 +977,8 @@ vim.keymap.set('n', '<C-g>', function()
 end)
 
 require('Comment').setup()
+
+local ft = require 'Comment.ft'
+ft.set('julius', { '//%s', '/*%s*/' })
+ft.set('lucius', { '/*%s*/', '/*%s*/' })
+ft.set('hamlet', { '<!--%s-->', '<!--%s-->' })
