@@ -920,6 +920,8 @@ require('lazy').setup({
   'pbrisbin/vim-syntax-shakespeare',
   'sindrets/diffview.nvim',
   'nvim-tree/nvim-web-devicons',
+  'mg979/vim-visual-multi',
+  'numToStr/Comment.nvim',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -973,3 +975,5 @@ vim.keymap.set('n', '<C-g>', function()
     vim.cmd 'DiffviewClose'
   end
 end)
+
+require('Comment').setup()
