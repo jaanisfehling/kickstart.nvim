@@ -921,6 +921,7 @@ require('lazy').setup({
   'nvim-tree/nvim-web-devicons',
   'mg979/vim-visual-multi',
   'numToStr/Comment.nvim',
+  'github/copilot.vim',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
