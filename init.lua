@@ -838,6 +838,17 @@ require('lazy').setup({
   'mg979/vim-visual-multi',
   'numToStr/Comment.nvim',
   'github/copilot.vim',
+  'ErickKramer/nvim-ros2',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    'nvim-treesitter/nvim-treesitter',
+  },
+  opts = {
+    autocmds = true,
+    telescope = true,
+    treesitter = true,
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
