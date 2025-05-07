@@ -530,7 +530,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -838,6 +838,8 @@ require('lazy').setup({
   'numToStr/Comment.nvim',
   'github/copilot.vim',
   'ErickKramer/nvim-ros2',
+  'tpope/vim-sleuth',
+
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
@@ -888,10 +890,11 @@ vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
 
-vim.o.tabstop = 4 -- Insert 4 spaces for a tab
-vim.o.shiftwidth = 4 -- Change the number of space characters inserted for indentation
-vim.o.expandtab = true -- Converts tabs to spaces
+-- vim.o.tabstop = 4 -- Insert 4 spaces for a tab
+-- vim.o.shiftwidth = 4 -- Change the number of space characters inserted for indentation
+-- vim.o.expandtab = true -- Converts tabs to spaces
 
+-- Git diff view
 vim.keymap.set('n', '<C-g>', function()
   if next(require('diffview.lib').views) == nil then
     vim.cmd 'DiffviewOpen'
@@ -902,6 +905,7 @@ end)
 
 require('Comment').setup()
 
+-- Yesod comments
 local ft = require 'Comment.ft'
 ft.set('julius', { '//%s', '/*%s*/' })
 ft.set('lucius', { '/*%s*/', '/*%s*/' })
