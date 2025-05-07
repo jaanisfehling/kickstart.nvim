@@ -830,7 +830,6 @@ require('lazy').setup({
 
   -- MY PLUGINS
 
-  'tanvirtin/monokai.nvim',
   'alx741/yesod.vim',
   'pbrisbin/vim-syntax-shakespeare',
   'sindrets/diffview.nvim',
@@ -888,8 +887,6 @@ vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
 vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-
-require('monokai').setup { palette = require('monokai').pro }
 
 vim.o.tabstop = 4 -- Insert 4 spaces for a tab
 vim.o.shiftwidth = 4 -- Change the number of space characters inserted for indentation
