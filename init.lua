@@ -839,6 +839,7 @@ require('lazy').setup({
   'github/copilot.vim',
   'ErickKramer/nvim-ros2',
   'tpope/vim-sleuth',
+  'tanvirtin/monokai.nvim',
 
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -910,3 +911,5 @@ local ft = require 'Comment.ft'
 ft.set('julius', { '//%s', '/*%s*/' })
 ft.set('lucius', { '/*%s*/', '/*%s*/' })
 ft.set('hamlet', { '<!--%s-->', '<!--%s-->' })
+
+require('monokai').setup { palette = require('monokai').pro }
