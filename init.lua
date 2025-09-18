@@ -805,6 +805,24 @@ require('lazy').setup({
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
 
+  {
+    'sainnhe/sonokai',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Optionally configure and load the colorscheme
+      -- directly inside the plugin declaration.
+      vim.g.sonokai_enable_italic = true
+      vim.g.sonokai_style = 'default'
+      vim.cmd.colorscheme 'sonokai'
+    end,
+  },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
@@ -839,7 +857,6 @@ require('lazy').setup({
   'github/copilot.vim',
   'ErickKramer/nvim-ros2',
   'tpope/vim-sleuth',
-  'tanvirtin/monokai.nvim',
 
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -912,4 +929,17 @@ ft.set('julius', { '//%s', '/*%s*/' })
 ft.set('lucius', { '/*%s*/', '/*%s*/' })
 ft.set('hamlet', { '<!--%s-->', '<!--%s-->' })
 
-require('monokai').setup { palette = require('monokai').pro }
+local harpoon = require 'harpoon'
+harpoon:setup()
+vim.keymap.set('n', '<C-a>', function()
+  harpoon:list():add()
+end)
+vim.keymap.set('n', '<C-h>', function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+vim.keymap.set('n', '<C-t>', function()
+  harpoon:list():select(1)
+end)
+vim.keymap.set('n', '<C-s>', function()
+  harpoon:list():select(2)
+end)
