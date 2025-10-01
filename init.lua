@@ -265,9 +265,6 @@ require('lazy').setup({
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -422,6 +419,8 @@ require('lazy').setup({
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
+
+          map('gh', vim.lsp.buf.hover, 'Hover Documentation')
 
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
@@ -832,26 +831,24 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  { import = 'custom.plugins' },
+  -- { import = 'custom.plugins' },
 
-  -- MY PLUGINS
-
+  { 'nvim-tree/nvim-web-devicons', opts = {} },
   'alx741/yesod.vim',
   'pbrisbin/vim-syntax-shakespeare',
   'sindrets/diffview.nvim',
-  'nvim-tree/nvim-web-devicons',
   'mg979/vim-visual-multi',
   'numToStr/Comment.nvim',
   'github/copilot.vim',
@@ -890,27 +887,13 @@ require('lazy').setup({
   },
 })
 
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
-
--- MY CONFIG
-
-vim.keymap.set('n', '<C-b>', '<Cmd>Neotree toggle<CR>')
+vim.keymap.set('n', '<C-b>', '<Cmd>NvimTreeToggle<CR>')
 
 local builtin = require 'telescope.builtin'
 vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<C-f>', builtin.live_grep, { desc = 'Telescope live grep' })
 
 require('lspconfig').hls.setup {}
-
-vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>')
-vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-
--- vim.o.tabstop = 4 -- Insert 4 spaces for a tab
--- vim.o.shiftwidth = 4 -- Change the number of space characters inserted for indentation
--- vim.o.expandtab = true -- Converts tabs to spaces
 
 -- Git diff view
 vim.keymap.set('n', '<C-g>', function()
@@ -937,9 +920,15 @@ end)
 vim.keymap.set('n', '<C-h>', function()
   harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
-vim.keymap.set('n', '<C-t>', function()
+vim.keymap.set('n', '<C-s>', function()
   harpoon:list():select(1)
 end)
-vim.keymap.set('n', '<C-s>', function()
+vim.keymap.set('n', '<C-t>', function()
   harpoon:list():select(2)
+end)
+vim.keymap.set('n', '<C-k>', function()
+  harpoon:list():prev()
+end)
+vim.keymap.set('n', '<C-l>', function()
+  harpoon:list():next()
 end)
